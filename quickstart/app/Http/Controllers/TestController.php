@@ -15,7 +15,8 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        $Beatles = ['John', 'Paul', 'George', 'Ringo'];
+        return view("test.index", compact('Beatles'));
     }
 
     /**
