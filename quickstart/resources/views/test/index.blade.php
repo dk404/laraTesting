@@ -4,9 +4,15 @@
     Привет мой друг, крутая штука этот yield
 @endsection
 
+
+
 @section('content')
 
     <h1>This is My Test Page</h1>
+
+    @if(session()->has('status'))
+        {{ session('status') }}
+    @endif
 
     @if(count($Beatles) > 0)
 

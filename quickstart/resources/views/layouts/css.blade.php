@@ -1,5 +1,6 @@
 <!-- Styles -->
 <link href="/css/app.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/8551de4ebd.css">
 
 <style>

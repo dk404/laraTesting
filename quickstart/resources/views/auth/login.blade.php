@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Авторизоваться!
+@endsection
+
 @section('content')
     <div class="container">
         <ol class="breadcrumb">

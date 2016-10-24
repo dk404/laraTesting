@@ -16,6 +16,10 @@ class TestController extends Controller
     public function index()
     {
         $Beatles = ['John', 'Paul', 'George', 'Ringo'];
+//        alert()->overlay('Listen', 'I hear Beatle music!', 'success');
+//        alert()->overlay('Problem', 'Cannot hear', 'info');
+
+        session()->flash('status', 'Task was successful!');
         return view("test.index", compact('Beatles'));
     }
 
