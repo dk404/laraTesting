@@ -1,5 +1,7 @@
 <!-- Styles -->
 <link href="/css/app.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/8551de4ebd.css">
+
 <style>
     body{
         padding-top: 65px;

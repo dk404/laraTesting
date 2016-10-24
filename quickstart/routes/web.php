@@ -17,9 +17,8 @@
 
 
 Route::get("/", "PagesController@index");
-
-
 Route::get("test", "TestController@index");
-Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Auth::routes(); //там внутри вшиты get и post uri для авторизации и регистрации
+
+
