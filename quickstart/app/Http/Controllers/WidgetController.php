@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Widget;
+use Redirect;
+use Illuminate\Support\Facades\Auth; //кстати интересный момент, не совсем понятно когда оно глобально а когда надо прицеплять !!
 
 class WidgetController extends Controller
 {
@@ -15,7 +17,9 @@ class WidgetController extends Controller
      */
     public function index()
     {
-        //
+//        $widgets = Widget::all();
+        $widgets = Widget::paginate(10);
+        return view('widget.index', compact('widgets'));
     }
 
     /**
@@ -36,7 +40,25 @@ class WidgetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'name' => 'required|unique:widgets|string|max:30',
+        ]);
+
+        $slug = str_slug($request->name, "-");
+
+        $widget = Widget::create([
+            'name'      => $request->name,
+            'slug'      => $slug,
+            'user_id'   => Auth::id()
+        ]);
+
+        $widget->save();
+
+        alert()->success('Congrats!', 'You made a Widget');
+
+        return Redirect::route('widget.index');
+
     }
 
     /**
