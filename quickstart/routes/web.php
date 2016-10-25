@@ -15,10 +15,8 @@
 //    return view('welcome');
 //});
 
-
+Auth::routes(); //там внутри вшиты get и post uri для авторизации и регистрации
 Route::get("/", "PagesController@index");
 Route::get("test", "TestController@index");
-
-Auth::routes(); //там внутри вшиты get и post uri для авторизации и регистрации
-
+Route::resource('widget', 'WidgetController');
 

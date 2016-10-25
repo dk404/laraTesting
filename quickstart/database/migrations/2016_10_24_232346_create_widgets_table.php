@@ -15,6 +15,7 @@ class CreateWidgetsTable extends Migration
     {
         Schema::create('widgets', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
