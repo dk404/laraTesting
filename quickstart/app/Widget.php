@@ -10,5 +10,13 @@ class Widget extends Model
                             'slug',
                             'user_id'];
 
+    /**
+     * Get the user that owns the widget.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 
 }
