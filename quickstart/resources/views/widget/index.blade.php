@@ -41,11 +41,12 @@
 
         </table>
 
+        {{ $widgets->links() }}
     @else
         Sorry, no Widgets
     @endif
 
-    {{ $widgets->links() }}
+
 
 
     <div> <a href="/widget/create">

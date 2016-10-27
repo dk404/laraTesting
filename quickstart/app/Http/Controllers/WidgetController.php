@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Auth; //кстати интересный мом�
 
 class WidgetController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']] );
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +24,8 @@ class WidgetController extends Controller
      */
     public function index()
     {
-//        $widgets = Widget::all();
-        $widgets = Widget::paginate(10);
+        $widgets = Widget::all();
+//        $widgets = Widget::paginate(10);
         return view('widget.index', compact('widgets'));
     }
 
