@@ -74,9 +74,18 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,  $slug = '')
     {
-        //
+        $widget = Widget::findOrFail($id);
+
+        if ($widget->slug !== $slug) {
+
+            return Redirect::route('widget.show', ['id' => $widget->id,
+                'slug' => $widget->slug],
+                301);
+        }
+
+        return view('widget.show', compact('widget'));
     }
 
     /**
@@ -87,7 +96,9 @@ class WidgetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $widget = Widget::findOrFail($id);
+
+        return view('widget.edit', compact('widget'));
     }
 
     /**
@@ -99,7 +110,24 @@ class WidgetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:40|unique:widgets,name,' .$id
+
+        ]);
+
+        $widget = Widget::findOrFail($id);
+
+        $slug = str_slug($request->name, "-");
+
+        $widget->update([
+            'name' => $request->name,
+            'slug' => $slug,
+            'user_id' => Auth::id()
+        ]);
+
+        alert()->success('Congrats!', 'You updated a widget');
+
+        return Redirect::route('widget.show', ['widget' => $widget, 'slug' =>$slug]);
     }
 
     /**
@@ -110,6 +138,10 @@ class WidgetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Widget::destroy($id);
+
+        alert()->overlay('Attention!', 'You deleted a widget', 'error');
+
+        return Redirect::route('widget.index');
     }
 }

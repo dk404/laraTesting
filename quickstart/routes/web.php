@@ -18,5 +18,10 @@
 Auth::routes(); //там внутри вшиты get и post uri для авторизации и регистрации
 Route::get("/", "PagesController@index");
 Route::get("test", "TestController@index");
-Route::resource('widget', 'WidgetController');
+//Route::resource('widget', 'WidgetController');
 
+Route::get('widget/create', ['as' => 'widget.create', 'uses' => 'WidgetController@create']);
+
+Route::get( 'widget/{id}-{slug?}', ['as' => 'widget.show', 'uses' => 'WidgetController@show']);
+
+Route::resource('widget', 'WidgetController', ['except' => ['show', 'create']]);

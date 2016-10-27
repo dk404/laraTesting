@@ -1,15 +1,11 @@
 <?php
-
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Widget extends Model
+class Widget extends SuperModel
 {
     protected $fillable = ['name',
                             'slug',
                             'user_id'];
-
     /**
      * Get the user that owns the widget.
      */
@@ -17,6 +13,4 @@ class Widget extends Model
     {
         return $this->belongsTo('App\User');
     }
-
-
 }
