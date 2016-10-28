@@ -7,10 +7,16 @@ use App\Http\Requests;
 use App\Widget;
 use Redirect;
 use Illuminate\Support\Facades\Auth; //кстати интересный момент, не совсем понятно когда оно глобально а когда надо прицеплять !!
+use App\Http\AuthTraits\OwnsRecord;
+
 
 class WidgetController extends Controller
 {
 
+    //traits
+    use OwnsRecord;
+
+    //methods
 
     public function __construct()
     {
@@ -111,25 +117,28 @@ class WidgetController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:40|unique:widgets,name,' .$id
+            'name' => 'required|string|max:30|unique:widgets,name,' .$id
 
         ]);
 
         $widget = Widget::findOrFail($id);
 
+        if ($this->userNotOwnerOf($widget)){
+
+            dd('you are not the owner');
+
+        }
+
         $slug = str_slug($request->name, "-");
 
-        $widget->update([
-            'name' => $request->name,
+        $widget->update(['name' => $request->name,
             'slug' => $slug,
-            'user_id' => Auth::id()
-        ]);
+            'user_id' => Auth::id()]);
 
         alert()->success('Congrats!', 'You updated a widget');
 
         return Redirect::route('widget.show', ['widget' => $widget, 'slug' =>$slug]);
     }
-
     /**
      * Remove the specified resource from storage.
      *
