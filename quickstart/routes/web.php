@@ -18,12 +18,10 @@
 Auth::routes(); //там внутри вшиты get и post uri для авторизации и регистрации
 Route::get("/", "PagesController@index");
 Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
+Route::get('privacy', 'PagesController@privacy');
 Route::get('test', ['middleware' => ['auth', 'admin'], 'uses' => 'TestController@index']);
-
-//Route::resource('widget', 'WidgetController');
-
+Route::get('terms-of-service', 'PagesController@terms');
 Route::get('widget/create', ['as' => 'widget.create', 'uses' => 'WidgetController@create']);
-
-Route::get( 'widget/{id}-{slug?}', ['as' => 'widget.show', 'uses' => 'WidgetController@show']);
+Route::get('widget/{id}-{slug?}', ['as' => 'widget.show', 'uses' => 'WidgetController@show']);
 
 Route::resource('widget', 'WidgetController', ['except' => ['show', 'create']]);
