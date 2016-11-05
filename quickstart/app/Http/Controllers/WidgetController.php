@@ -8,6 +8,7 @@ use App\Widget;
 use Redirect;
 use Illuminate\Support\Facades\Auth; //кстати интересный момент, не совсем понятно когда оно глобально а когда надо прицеплять !!
 use App\Http\AuthTraits\OwnsRecord;
+use App\Exceptions\UnauthorizedException;
 
 
 class WidgetController extends Controller
@@ -20,7 +21,7 @@ class WidgetController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']] );
+        $this->middleware(['auth', 'admin'], ['except' => ['index']] );
     }
 
     /**
@@ -104,6 +105,10 @@ class WidgetController extends Controller
     {
         $widget = Widget::findOrFail($id);
 
+        if ( ! $this->adminOrCurrentUserOwns($widget)){
+            throw new UnauthorizedException;
+        }
+
         return view('widget.edit', compact('widget'));
     }
 
@@ -124,16 +129,18 @@ class WidgetController extends Controller
         $widget = Widget::findOrFail($id);
 
         if ($this->userNotOwnerOf($widget)){
-
-            dd('you are not the owner');
-
+            if ( ! $this->adminOrCurrentUserOwns($widget)){
+                throw new UnauthorizedException;
+            }
         }
+
 
         $slug = str_slug($request->name, "-");
 
         $widget->update(['name' => $request->name,
-            'slug' => $slug,
-            'user_id' => Auth::id()]);
+            'slug' => $slug
+//            ,'user_id' => Auth::id()
+        ]);
 
         alert()->success('Congrats!', 'You updated a widget');
 

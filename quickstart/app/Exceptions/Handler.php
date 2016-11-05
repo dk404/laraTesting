@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\Exceptions\NoActiveAccountException;
+use App\Exceptions\UnauthorizedException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -46,12 +48,21 @@ class Handler extends ExceptionHandler
 
         switch($e){
 
+            case ($e instanceof ModelNotFoundException):
+
+                return $this->renderException($e);
+                break;
+            case ($e instanceof NoActiveAccountException):
+
+                return $this->renderException($e);
+                break;
+
             case ($e instanceof NotFoundHttpException):
 
                 return $this->renderException($e);
                 break;
 
-            case ($e instanceof ModelNotFoundException):
+            case ($e instanceof UnauthorizedException):
 
                 return $this->renderException($e);
                 break;
@@ -68,13 +79,21 @@ class Handler extends ExceptionHandler
 
         switch ($e){
 
+            case ($e instanceof ModelNotFoundException):
+                return response()->view('errors.404', [], 404);
+                break;
+
+            case ($e instanceof NoActiveAccountException):
+                return response()->view('errors.no-active-account');
+                break;
+
             case ($e instanceof NotFoundHttpException):
 
                 return response()->view('errors.404', [], 404);
                 break;
 
-            case ($e instanceof ModelNotFoundException):
-                return response()->view('errors.404', [], 404);
+            case ($e instanceof UnauthorizedException):
+                return response()->view('errors.unauthorized');
                 break;
 
             default:
