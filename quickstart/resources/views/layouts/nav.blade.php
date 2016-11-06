@@ -34,6 +34,10 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
+                                <a href="/auth/facebook">
+                                    <i class="fa fa-facebook"></i>&nbsp;&nbsp; Sync </a>
+                            </li>
+                            <li>
                                 <a href="/logout"
                                    onclick="event.preventDefault();
                                    document.getElementById('logout-form').submit();">
@@ -51,7 +55,10 @@
                 @else
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>
-
+                    <li>
+                        <a href="/auth/facebook">
+                            <i class="fa fa-facebook"></i>&nbsp;&nbsp; Sign in </a>
+                    </li>
                 @endif
             </ul>
         </div><!--/.nav-collapse -->

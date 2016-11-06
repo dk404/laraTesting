@@ -10,6 +10,8 @@
 
 <body role="document">
 
+@include('layouts.facebook')
+
 <!-- Fixed navbar -->
 @include('layouts.nav')
 

@@ -167,6 +167,7 @@ return [
         //доп мои дополнения
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Socieboy\Alerts\AlertServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,7 +234,7 @@ return [
 
         //мои
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
-
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
