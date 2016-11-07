@@ -41,6 +41,9 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('privacy', 'PagesController@privacy');
 
+// Profile
+Route::resource('profile', 'ProfileController');
+
 // Registration Routes...
 
 Route::get('register', 'Auth\AuthController@showRegistrationForm');
