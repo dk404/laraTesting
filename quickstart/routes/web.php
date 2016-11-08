@@ -42,6 +42,8 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('privacy', 'PagesController@privacy');
 
 // Profile
+Route::get('show-profile', ['as' => 'show-profile', 'uses' => 'ProfileController@showProfileToUser']);
+Route::get('my-profile', ['as' => 'my-profile', 'uses' => 'ProfileController@myProfile']);
 Route::resource('profile', 'ProfileController');
 
 // Registration Routes...
@@ -67,8 +69,12 @@ Route::get('test',  ['middleware' => 'auth', 'uses' => 'TestController@index']);
 // Widget routes
 
 Route::get('widget/create', ['as' => 'widget.create', 'uses' => 'WidgetController@create']);
-
 Route::get( 'widget/{id}-{slug?}', ['as' => 'widget.show', 'uses' => 'WidgetController@show']);
-
 Route::resource('widget', 'WidgetController', ['except' => ['show', 'create']]);
 
+// User
+Route::resource('user', 'UserController');
+
+// Settings
+Route::get('settings', 'SettingsController@edit');
+Route::post('settings', ['as' => 'userUpdate', 'uses' => 'SettingsController@update']);
