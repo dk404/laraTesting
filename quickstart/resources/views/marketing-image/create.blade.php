@@ -6,6 +6,7 @@
 
 @section('content')
 
+
     <ol class='breadcrumb'>
         <li><a href='/'>Home</a></li>
         <li><a href='/marketing-image'>Marketing Images</a></li>
@@ -41,31 +42,54 @@
 
         <!-- is_active Form Input -->
 
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('is_active') ? ' has-error' : '' }}">
             <label class=" control-label">Is Active
             </label>
             <div>
-                <input type="checkbox"  name="is_active">
+                <input type="checkbox"  name="is_active" value="1">
             </div>
+
+            @if ($errors->has('is_active'))
+
+                <span class="help-block">
+                <strong>{{ $errors->first('is_active') }}</strong>
+                </span>
+
+            @endif
         </div>
 
         <!-- is_featured Form Input -->
 
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('is_featured') ? ' has-error' : '' }}">
             <label class=" control-label">Is Featured
             </label>
             <div>
-                <input type="checkbox"  name="is_featured">
+                <input type="checkbox"  name="is_featured" value="1">
             </div>
+            @if ($errors->has('is_featured'))
+
+                <span class="help-block">
+                <strong>{{ $errors->first('is_featured') }}</strong>
+                </span>
+
+            @endif
         </div>
 
         <!-- image file Form Input -->
 
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
             <label class="control-label">Primary Image
             </label>
 
             <input type="file" name="image" id="image">
+
+            @if ($errors->has('image'))
+
+                <span class="help-block">
+                <strong>{{ $errors->first('image') }}</strong>
+                </span>
+
+            @endif
         </div>
 
 

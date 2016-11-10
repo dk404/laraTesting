@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use \Byte\ByteConverter;
 
 class CreateImageRequest extends FormRequest
 {
@@ -23,16 +24,14 @@ class CreateImageRequest extends FormRequest
      */
     public function rules()
     {
-
-
+        $converter = new ByteConverter();
+        $bytes = $converter->getBytes('3m');
 
         return [
             'image_name' => 'alpha_num|required|unique:marketing_images',
             'is_active' => 'required|boolean',
             'is_featured' => 'required|boolean',
-            'image' => 'required|mimes:jpeg,jpg,bmp,png|max:1000',
-
-
+            'image' => 'required|mimes:jpeg,jpg,bmp,png|max:'.$bytes,
         ];
     }
 }

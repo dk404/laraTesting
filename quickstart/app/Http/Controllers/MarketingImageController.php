@@ -8,6 +8,8 @@ use App\MarketingImage;
 use App\Http\Requests\EditImageRequest;
 
 use Illuminate\Http\Request;
+
+//use Illuminate\Http\Request;
 //use App\Http\Requests;
 
 class MarketingImageController extends Controller
@@ -56,7 +58,7 @@ class MarketingImageController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(CreateImageRequest $request)
     {
         //create new instance of model to save from form
 
@@ -68,6 +70,8 @@ class MarketingImageController extends Controller
             'is_featured'       => $request->get('is_featured')
 
         ]);
+
+//        dd($request);
 
         // save model
 

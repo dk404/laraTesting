@@ -21,6 +21,7 @@ class MarketingImage extends SuperModel
     {
 
         return $is_active == 1 ? 'Yes' : 'No';
+//        return $is_active == 1 ? 1 : 0;
 
     }
 
@@ -28,6 +29,7 @@ class MarketingImage extends SuperModel
     {
 
         return $is_featured == 1 ? 'Yes' : 'No';
+//        return $is_featured == 1 ? 1 : 0;
 
     }
 }
