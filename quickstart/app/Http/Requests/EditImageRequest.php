@@ -24,8 +24,8 @@ class EditImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'is_active' => 'required|boolean',
-            'is_featured' => 'required|boolean',
+            'is_active' => 'boolean',
+            'is_featured' => 'boolean',
             'image' => 'mimes:jpeg,jpg,bmp,png|max:1000'
         ];
     }

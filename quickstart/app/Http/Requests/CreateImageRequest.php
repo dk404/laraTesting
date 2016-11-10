@@ -29,8 +29,8 @@ class CreateImageRequest extends FormRequest
 
         return [
             'image_name' => 'alpha_num|required|unique:marketing_images',
-            'is_active' => 'required|boolean',
-            'is_featured' => 'required|boolean',
+            'is_active' => 'boolean',
+            'is_featured' => 'boolean',
             'image' => 'required|mimes:jpeg,jpg,bmp,png|max:'.$bytes,
         ];
     }
