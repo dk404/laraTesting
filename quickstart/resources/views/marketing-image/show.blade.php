@@ -2,7 +2,7 @@
 
 @section('title')
 
-    {{ $widget->name }} Widget
+    {{ $marketingImage->name }}
 
 @endsection
 
@@ -10,11 +10,21 @@
 
     <ol class='breadcrumb'>
         <li><a href='/'>Home</a></li>
-        <li><a href='/widget'>Widgets</a></li>
-        <li><a href='/widget/{{ $widget->id }}'>{{ $widget->name }}</a></li>
+        <li><a href='/marketing-image'>Marketing Images</a></li>
+        <li><a href='/marketing-image/{{ $marketingImage->id }}'>{{ $marketingImage->image_name }}</a></li>
     </ol>
 
-    <h1>{{ $widget->name }}</h1>
+    <h1>{{ $marketingImage->image_name }} Marketing Image</h1>
+
+    <div class="pull-left">
+
+
+        <a href="/marketing-image/{{ $marketingImage->id }}/edit">
+
+            <button type="button" class="btn btn-primary btn-lg">Edit Image</button></a>
+
+    </div>
+    <br><br>
 
     <hr/>
 
@@ -22,37 +32,68 @@
 
         <!-- Table -->
         <table class="table table-striped">
+
             <tr>
 
-                <th>Id</th>
-                <th>Name</th>
-                <th>Date Created</th>
-                @if(Auth::user()->adminOrCurrentUserOwns($widget))
-                    <th>Edit</th>
-                @endif
-                <th>Delete</th>
+                <th>Thumbnail</th>
 
             </tr>
 
-
             <tr>
-                <td>{{ $widget->id }} </td>
-                <td> <a href="/widget/{{ $widget->id }}/edit">
-                        {{ $widget->name }}</a></td>
-                <td>{{ $widget->created_at }}</td>
-
-                @if(Auth::user()->adminOrCurrentUserOwns($widget))
-
-                    <td> <a href="/widget/{{ $widget->id }}/edit">
-
-                            <button type="button" class="btn btn-default">Edit</button></a></td>
-
-                @endif
 
                 <td>
-                    <div class="form-group">
 
-                        <form class="form" role="form" method="POST" action="{{ url('/widget/'. $widget->id) }}">
+                    <img src="{{ $marketingImage->showImage($marketingImage, $thumbnailPath) }}">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>Active?</th>
+
+            </tr>
+
+            <tr>
+
+                <td>{{ $marketingImage->showActiveStatus($marketingImage->is_active) }}</td>
+
+            </tr>
+
+            <tr>
+
+                <th>Featured?</th>
+
+            </tr>
+
+            <tr>
+
+                <td>{{ $marketingImage->showFeaturedStatus($marketingImage->is_featured) }}</td>
+
+            </tr>
+
+            <tr>
+
+                <th>Primary Image</th>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <img src="{{ $marketingImage->showImage($marketingImage, $imagePath) }}" style="max-width: 600px;">
+
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                    <div class="form-group pull-left">
+
+                        <form class="form" role="form" method="POST" action="{{ url('/marketing-image/'. $marketingImage->id) }}">
                             <input type="hidden" name="_method" value="delete">
                             {{ csrf_field() }}
 
@@ -60,12 +101,12 @@
 
                         </form>
                     </div>
+
                 </td>
 
             </tr>
 
         </table>
-
 
     </div>
 

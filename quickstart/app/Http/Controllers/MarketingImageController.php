@@ -7,6 +7,9 @@ use App\Http\Requests\CreateImageRequest;
 use App\MarketingImage;
 use App\Http\Requests\EditImageRequest;
 
+use Illuminate\Http\Request;
+//use App\Http\Requests;
+
 class MarketingImageController extends Controller
 {
     use ManagesImages;
@@ -53,7 +56,7 @@ class MarketingImageController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(CreateImageRequest $request)
+    public function store(Request $request)
     {
         //create new instance of model to save from form
 

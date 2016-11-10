@@ -1,38 +1,42 @@
 @extends('layouts.master')
 
 @section('title')
-    Widgets
+
+   Marketing Images
+
 @endsection
 
 @section('content')
 
     <ol class='breadcrumb'>
         <li><a href='/'>Home</a></li>
-        <li class='active'>Widgets</li>
+        <li class='active'>Marketing Images</li>
     </ol>
 
-    <h2>Widgets</h2>
+    <h2>Marketing Images</h2>
 
     <hr/>
 
-    @if($widgets->count() > 0)
+    @if($marketingImages->count() > 0)
 
         <table class="table table-hover table-bordered table-striped">
 
             <thead>
             <th>Id</th>
+            <th>Thumbnail</th>
             <th>Name</th>
             <th>Date Created</th>
             </thead>
 
             <tbody>
 
-            @foreach($widgets as $widget)
+            @foreach($marketingImages as $marketingImage)
 
                 <tr>
-                    <td>{{ $widget->id }}</td>
-                    <td><a href="/widget/{{ $widget->id }}-{{ $widget->slug }}">{{ $widget->name }}</a></td>
-                    <td>{{ $widget->created_at }}</td>
+                    <td><a href="/marketing-image/{{ $marketingImage->id }}/edit">{{ $marketingImage->id }}</a></a></td>
+                    <td><a href="/marketing-image/{{ $marketingImage->id }}"><img src="{{ $marketingImage->showImage($marketingImage, $thumbnailPath) }}"></a></td>
+                    <td><a href="/marketing-image/{{ $marketingImage->id }}">{{ $marketingImage->image_name }}</a></td>
+                    <td>{{ $marketingImage->created_at }}</td>
                 </tr>
 
             @endforeach
@@ -41,15 +45,15 @@
 
         </table>
 
-{{--        {{ $widgets->links() }}--}}
     @else
-        Sorry, no Widgets
+
+        Sorry, no Marketing Images
+
     @endif
 
+    {{ $marketingImages->links() }}
 
-
-
-    <div> <a href="/widget/create">
+    <div> <a href="/marketing-image/create">
             <button type="button" class="btn btn-lg btn-primary">
                 Create New
             </button></a>
