@@ -20,5 +20,9 @@
     .circ:hover{
         box-shadow: 0 0 0 3px #f00;
     }
+
+    .carousel-inner img {
+        margin: auto;
+    }
     
 </style>

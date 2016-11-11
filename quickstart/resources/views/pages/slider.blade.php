@@ -1,35 +1,71 @@
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
+<div>
+    <div>
+        @if ($notEnoughImages)
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="/imgs/marketing/0000000002.jpg" alt="...">
-            <div class="carousel-caption">
-                <h1>Lorem ipsum.</h1>
+            Not enough images in slider
+
+        @else
+
+            <div id="carousel-marketing-images" class="carousel slide" data-ride="carousel" data-interval="false">
+
+                <!-- Indicators -->
+
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-marketing-images" data-slide-to="0" class="active"></li>
+
+                    @foreach (range(1, $count) as $number)
+
+                        <li data-target="#carousel-marketing-images" data-slide-to="{{ $number }}"></li>
+
+                    @endforeach
+
+                </ol>
+
+                <!-- Wrapper for slides -->
+
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+
+                        <img src="{{ $featuredImage->showImage($featuredImage, $imagePath) }}"
+                             alt="{{ $featuredImage->image_name }}">
+
+                        <div class="carousel-caption">
+                            <h1></h1>
+                        </div>
+                    </div>
+
+                    @foreach ($activeImages as $image)
+
+                        <div class="item">
+
+                            <img src="{{ $image->showImage($image, $imagePath)}}"
+                                 alt="{{ $image->image_name }}">
+
+
+                            <div class="carousel-caption">
+                                <h1> </h1>
+                            </div>
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+                <!-- Controls -->
+
+                <a class="left carousel-control" href="#carousel-marketing-images" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+
+                <a class="right carousel-control" href="#carousel-marketing-images" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
             </div>
-        </div>
-        <div class="item">
-            <img src="..." alt="...">
-            <div class="carousel-caption">
-                <h1>Lorem ipsum dolor.</h1>
-            </div>
-        </div>
-        ...
+
+        @endif
+
     </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
 </div>

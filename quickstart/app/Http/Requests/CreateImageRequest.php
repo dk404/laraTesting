@@ -28,10 +28,11 @@ class CreateImageRequest extends FormRequest
         $bytes = $converter->getBytes('3m');
 
         return [
-            'image_name' => 'alpha_num|required|unique:marketing_images',
-            'is_active' => 'boolean',
-            'is_featured' => 'boolean',
-            'image' => 'required|mimes:jpeg,jpg,bmp,png|max:'.$bytes,
+            'image_name'    => 'alpha_num|required|unique:marketing_images',
+            'is_active'     => 'boolean',
+            'is_featured'   => 'boolean',
+            'image_weight'  => 'integer|between:1,100',
+            'image'         => 'required|mimes:jpeg,jpg,bmp,png|max:'.$bytes,
         ];
     }
 }

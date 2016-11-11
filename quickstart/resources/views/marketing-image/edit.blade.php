@@ -40,9 +40,9 @@
 
         </div>
 
-        <h4>{{ $marketingImage->image_name
-                   . '.' .
-                   $marketingImage->image_extension }}
+        <h4>{{ $marketingImage->image_name. '.' .$marketingImage->image_extension }}
+
+
         </h4>
 
     </div>
@@ -65,8 +65,7 @@
 
         {{ csrf_field() }}
 
-                <!-- is_active Form Input -->
-
+        <!-- is_active Form Input -->
         <div class="form-group{{ $errors->has('is_active') ? ' has-error' : '' }}">
 
             <label class="control-label">Is Active</label>
@@ -91,7 +90,6 @@
         </div>
 
         <!-- is_featured Form Input -->
-
         <div class="form-group{{ $errors->has('is_featured') ? ' has-error' : '' }}">
 
             <label class="control-label">Is Featured</label>
@@ -115,8 +113,20 @@
 
         </div>
 
-        <!-- image file Form Input -->
+        <!-- image_weight Form Input -->
+        <div class="form-group{{ $errors->has('image_weight') ? ' has-error' : '' }}">
 
+            <label class="control-label">Image Weight</label>
+            <input type="number" class="form-control" name="image_weight" value="{{ $marketingImage->image_weight }}">
+
+            @if ($errors->has('image_weight'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('image_weight') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <!-- image file Form Input -->
         <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
 
             <div class="form-group">

@@ -22,8 +22,7 @@
 
         {{ csrf_field() }}
 
-                <!-- image_name Form Input -->
-
+        <!-- image_name Form Input -->
         <div class="form-group{{ $errors->has('image_name') ? ' has-error' : '' }}">
 
             <label class="control-label">Image Name</label>
@@ -41,7 +40,6 @@
         </div>
 
         <!-- is_active Form Input -->
-
         <div class="form-group{{ $errors->has('is_active') ? ' has-error' : '' }}">
             <label class=" control-label">Is Active
             </label>
@@ -59,7 +57,6 @@
         </div>
 
         <!-- is_featured Form Input -->
-
         <div class="form-group{{ $errors->has('is_featured') ? ' has-error' : '' }}">
             <label class=" control-label">Is Featured
             </label>
@@ -76,7 +73,6 @@
         </div>
 
         <!-- image file Form Input -->
-
         <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
             <label class="control-label">Primary Image
             </label>
@@ -92,6 +88,22 @@
             @endif
         </div>
 
+        <!-- image_weight Form Input -->
+        <div class="form-group{{ $errors->has('image_weight') ? ' has-error' : '' }}">
+
+            <label class="control-label">Image Weight</label>
+
+            <input type="number" class="form-control" name="image_weight" value="{{ old('image_weight') }}">
+
+            @if ($errors->has('image_weight'))
+
+                <span class="help-block">
+                <strong>{{ $errors->first('image_weight') }}</strong>
+                </span>
+
+            @endif
+
+        </div>
 
         <div class="form-group">
 

@@ -2,7 +2,7 @@
 
 @section('title')
 
-    {{ $marketingImage->name }}
+   {{ $marketingImage->name }}
 
 @endsection
 
@@ -24,11 +24,13 @@
             <button type="button" class="btn btn-primary btn-lg">Edit Image</button></a>
 
     </div>
+
     <br><br>
 
     <hr/>
 
     <div class="panel panel-default">
+
 
         <!-- Table -->
         <table class="table table-striped">
@@ -75,7 +77,20 @@
 
             <tr>
 
+                <th>Image Weight</th>
+
+            </tr>
+
+            <tr>
+
+                <td>{{ $marketingImage->image_weight }}</td>
+
+            </tr>
+
+            <tr>
+
                 <th>Primary Image</th>
+
 
             </tr>
 
@@ -87,6 +102,8 @@
 
                 </td>
             </tr>
+
+
 
             <tr>
                 <td>
@@ -101,6 +118,7 @@
 
                         </form>
                     </div>
+
 
                 </td>
 
