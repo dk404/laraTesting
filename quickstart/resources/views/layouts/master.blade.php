@@ -12,17 +12,21 @@
 
 @include('layouts.facebook')
 
-<!-- Fixed navbar -->
-@include('layouts.nav')
+<div id="app">
+
+    <!-- Fixed navbar -->
+    @include('layouts.nav')
 
 
-<div class="container theme-showcase" role="main">
+    <div class="container theme-showcase" role="main">
 
-    @yield('content')
-    @include('layouts.bottom')
+        @yield('content')
+        @include('layouts.bottom')
 
 
-</div> <!-- /container -->
+    </div> <!-- /container -->
+
+</div>
 
 @include('layouts.scripts')
 @include('Alerts::show')
