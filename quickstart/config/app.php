@@ -178,6 +178,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Мои
+        Evercode1\FoundationMaker\FoundationMakerServiceProvider::class,
+
     ],
 
     /*
