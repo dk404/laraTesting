@@ -6,15 +6,16 @@ use Illuminate\Http\Request;
 use DB;
 use App\Queries\GridQueries\Contracts\DataQuery;
 
-class GridQuery implements DataQuery
+
+class GridQuery
 {
 
-    public static function sendData(Request $request,  DataQuery $query)
+    public static function sendData(Request $request, DataQuery $query)
     {
 
         // set sort by column and direction
 
-        list($column, $direction) = static::setSort($request);
+        list($column, $direction) = static::setSort($request, $query);
 
 
         // search by keyword with column sort
@@ -37,12 +38,13 @@ class GridQuery implements DataQuery
 
     }
 
-    public static function setSort(Request $request)
+    public static function setSort(Request $request, $query)
     {
+
         // set sort by column with default
 
-        $column = 'id';
-        $direction = 'asc';
+        list($column, $direction) = static::setDefaults($query);
+
 
         if ($request->has('column')) {
 
@@ -66,6 +68,32 @@ class GridQuery implements DataQuery
         return [$column, $direction];
     }
 
+    public static function setDefaults($query)
+    {
+
+        switch ($query){
+
+            case $query instanceof MarketingImageQuery :
+
+                $column = 'image_weight';
+                $direction = 'asc';
+
+                break;
+
+            default:
+
+                $column = 'id';
+                $direction = 'asc';
+
+                break;
+
+        }
+
+        return list($column, $direction) = [$column, $direction];
+
+
+    }
+
     public static function keywordFilter(Request $request, $query, $column, $direction)
     {
         $keyword = $request->get('keyword');
@@ -73,8 +101,6 @@ class GridQuery implements DataQuery
         return response()->json($query->filteredData($column,
             $direction,
             $keyword));
-
-
 
     }
 
@@ -87,13 +113,6 @@ class GridQuery implements DataQuery
     }
 
 
-    public function data($column, $direction)
-    {
-        // TODO: Implement data() method.
-    }
 
-    public function filteredData($column, $direction, $keyword)
-    {
-        // TODO: Implement filteredData() method.
-    }
+
 }

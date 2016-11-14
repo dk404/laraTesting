@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Queries\GridQueries\GridQuery;
 use App\Queries\GridQueries\WidgetQuery;
+use App\Queries\GridQueries\MarketingImageQuery;
 use App\Http\Requests;
 
 class ApiController extends Controller
