@@ -31,7 +31,6 @@ class ApiController extends Controller
 
     }
 
-    // End Category Api Data Grid Method
 
 
 

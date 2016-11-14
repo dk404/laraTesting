@@ -40,3 +40,17 @@ Route::get('api/subcategory-data', 'ApiController@subcategoryData');
 Route::resource('subcategory', 'SubcategoryController');
 
 // End Subcategory Routes
+// Begin Category Routes
+
+Route::get('api/category-data', 'ApiController@categoryData');
+
+Route::resource('category', 'CategoryController');
+
+// End Category Routes
+// Begin Subcategory Routes
+
+Route::get('api/subcategory-data', 'ApiController@subcategoryData');
+
+Route::resource('subcategory', 'SubcategoryController');
+
+// End Subcategory Routes

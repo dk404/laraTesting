@@ -1,4 +1,4 @@
-@extends('layouts.Slug')
+@extends('layouts.master')
 
 @section('title')
 
