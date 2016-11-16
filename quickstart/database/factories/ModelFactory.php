@@ -40,9 +40,12 @@ $factory->define(App\Widget::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
 
+
+    $name = $faker->unique()->words(2, true);
     return [
 
-        'name' => $faker->unique()->word,
+        'name' => $name,
+        'slug' => \Illuminate\Support\Str::slug($name, "-"),
 
     ];
 

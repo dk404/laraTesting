@@ -12,7 +12,7 @@ class CategoryQuery implements DataQuery
 
         $rows = DB::table('categories')
                     ->select('id as Id',
-                             'name as Name',
+                             'name as Name', 'slug',
                              DB::raw('DATE_FORMAT(created_at,
                              "%m-%d-%Y") as Created'))
                     ->orderBy($column, $direction)
@@ -28,7 +28,7 @@ class CategoryQuery implements DataQuery
 
         $rows = DB::table('categories')
                 ->select('id as Id',
-                         'name as Name',
+                         'name as Name', 'slug',
                          DB::raw('DATE_FORMAT(created_at,
                                  "%m-%d-%Y") as Created'))
                 ->where('name', 'like', '%' . $keyword . '%')

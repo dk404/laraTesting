@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -50,7 +51,11 @@ class CategoryController extends Controller
 
         ]);
 
-        $category = Category::create(['name' => $request->name]);
+        $category = Category::create([
+
+                'name' => $request->name
+                ,'slug' => Str::slug($request->name, '-')
+        ]);
 
         $category->save();
 
@@ -65,12 +70,15 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show($id)
+    public function show($id, $slug='')
     {
         $category = Category::findOrFail($id);
 
+        if ($category->slug !== $slug) {
+            return Redirect::route('category.show', ['id' => $category->id,
+                'slug' => $category->slug], 301);
+        }
         return view('category.show', compact('category'));
-
     }
 
     /**
