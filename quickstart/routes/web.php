@@ -44,3 +44,17 @@ Route::resource('gadget', 'GadgetController');
 Route::get('api/subcategory-data', 'ApiController@subcategoryData');
 Route::resource('subcategory', 'SubcategoryController');
 // End Subcategory Routes
+// Begin Dummy Routes
+
+Route::get('api/dummy-data', 'ApiController@dummyData');
+
+Route::resource('dummy', 'DummyController');
+
+// End Dummy Routes
+// Begin Post Routes
+
+Route::get('api/post-data', 'ApiController@postData');
+
+Route::resource('post', 'PostController');
+
+// End Post Routes

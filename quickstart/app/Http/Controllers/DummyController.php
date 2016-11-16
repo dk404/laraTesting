@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-:::useModel:::;
+use App\Dummy;
 use Illuminate\Support\Facades\Redirect;
 
-class :::upperCaseModelName:::Controller extends Controller
+class DummyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class :::upperCaseModelName:::Controller extends Controller
     public function index()
     {
 
-        return view(':::modelPath:::.index');
+        return view('dummy.index');
 
     }
 
@@ -30,7 +30,7 @@ class :::upperCaseModelName:::Controller extends Controller
     public function create()
     {
 
-        return view(':::modelPath:::.create');
+        return view('dummy.create');
 
     }
 
@@ -46,17 +46,17 @@ class :::upperCaseModelName:::Controller extends Controller
 
         $this->validate($request, [
 
-            ':::field_name:::' => 'required|unique::::tableName:::|string|max:30',
+            'name' => 'required|unique:dummies|string|max:30',
 
         ]);
 
-        $:::modelInstance::: = :::upperCaseModelName:::::create([':::field_name:::' => $request->:::field_name:::]);
+        $dummy = Dummy::create(['name' => $request->name]);
 
-        $:::modelInstance:::->save();
+        $dummy->save();
 
-        alert()->success('Congrats!', 'You made a :::model:::');
+        alert()->success('Congrats!', 'You made a Dummy');
 
-        return Redirect::route(':::modelPath:::.index');
+        return Redirect::route('dummy.index');
 
     }
 
@@ -69,9 +69,9 @@ class :::upperCaseModelName:::Controller extends Controller
 
     public function show($id)
     {
-        $:::modelInstance::: = :::upperCaseModelName:::::findOrFail($id);
+        $dummy = Dummy::findOrFail($id);
 
-        return view(':::modelPath:::.show', compact(':::modelInstance:::'));
+        return view('dummy.show', compact('dummy'));
 
     }
 
@@ -84,9 +84,9 @@ class :::upperCaseModelName:::Controller extends Controller
 
     public function edit($id)
     {
-        $:::modelInstance::: = :::upperCaseModelName:::::findOrFail($id);
+        $dummy = Dummy::findOrFail($id);
 
-        return view(':::modelPath:::.edit', compact(':::modelInstance:::'));
+        return view('dummy.edit', compact('dummy'));
 
     }
 
@@ -102,18 +102,18 @@ class :::upperCaseModelName:::Controller extends Controller
     {
         $this->validate($request, [
 
-            ':::field_name:::' => 'required|string|max:40|unique::::tableName:::,:::field_name:::,' .$id
+            'name' => 'required|string|max:40|unique:dummies,name,' .$id
 
         ]);
 
-        $:::modelInstance::: = :::upperCaseModelName:::::findOrFail($id);
+        $dummy = Dummy::findOrFail($id);
 
-        $:::modelInstance:::->update([':::field_name:::' => $request->:::field_name:::]);
+        $dummy->update(['name' => $request->name]);
 
-        alert()->success('Congrats!', 'You updated a :::model:::');
+        alert()->success('Congrats!', 'You updated a Dummy');
 
 
-        return Redirect::route(':::modelPath:::.show', [':::modelInstance:::' => $:::modelInstance:::]);
+        return Redirect::route('dummy.show', ['dummy' => $dummy]);
 
     }
 
@@ -126,11 +126,11 @@ class :::upperCaseModelName:::Controller extends Controller
 
     public function destroy($id)
     {
-        :::upperCaseModelName:::::destroy($id);
+        Dummy::destroy($id);
 
-        alert()->overlay('Attention!', 'You deleted a :::model:::', 'error');
+        alert()->overlay('Attention!', 'You deleted a Dummy', 'error');
 
-        return Redirect::route(':::modelPath:::.index');
+        return Redirect::route('dummy.index');
 
     }
 }

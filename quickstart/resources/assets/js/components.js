@@ -19,3 +19,13 @@ Vue.component('subcategory-grid', require('./components/SubcategoryGrid.vue'));
 Vue.component('gadget-grid', require('./components/GadgetGrid.vue'));
 
 /** End Gadget Grid Component Call */
+/** Begin Dummy Grid Component Call */
+
+Vue.component('dummy-grid', require('./components/DummyGrid.vue'));
+
+/** End Dummy Grid Component Call */
+/** Begin Post Grid Component Call */
+
+Vue.component('post-grid', require('./components/PostGrid.vue'));
+
+/** End Post Grid Component Call */
