@@ -180,6 +180,7 @@ return [
 
         //Мои
         Evercode1\FoundationMaker\FoundationMakerServiceProvider::class,
+        Socieboy\Alerts\AlertServiceProvider::class
 
     ],
 

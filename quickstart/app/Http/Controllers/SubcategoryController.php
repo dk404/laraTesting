@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Subcategory;
 use App\Category;
 use Illuminate\Support\Facades\Redirect;
+use League\Flysystem\Exception;
+use Illuminate\Foundation\Bootstrap\HandleExceptions;
 
 class SubcategoryController extends Controller
 {
@@ -74,7 +76,20 @@ class SubcategoryController extends Controller
     {
         $subcategory = Subcategory::findOrFail($id);
 
-        $category = $subcategory->category->name;
+//        $category = "deleted";
+        $category =  $subcategory->category->name;
+
+//        try
+//        {
+//            $category =  $subcategory->category->name;
+//        }catch (Exception $e)
+//        {
+//            $category = "deleted";
+//        }
+//        finally{
+//            $category = "deleted";
+//        }
+
 
         return view('subcategory.show', compact('subcategory', 'category'));
     }

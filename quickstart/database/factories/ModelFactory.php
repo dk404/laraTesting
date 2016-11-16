@@ -58,10 +58,23 @@ $factory->define(App\Subcategory::class, function (Faker\Generator $faker) {
     return [
 
         'name' => $faker->unique()->word,
-        'category_id' => $faker->numberBetween($min = 1, $max = 4),
+        'category_id' => $faker->numberBetween($min = 48, $max = 61),
 
     ];
 
 });
 
 // End Subcategory Factory
+// Begin Gadget Factory
+
+$factory->define(App\Gadget::class, function (Faker\Generator $faker) {
+    return [
+
+        'name' => $faker->unique()->word,
+        'widget_id' => $faker->numberBetween($min = 1, $max = 4),
+
+    ];
+
+});
+
+// End Gadget Factory

@@ -9,6 +9,19 @@ use App\Queries\GridQueries\GridQuery;
 class ApiController extends Controller
 {
 
+    // Begin Gadget Api Data Grid Method
+
+    public function gadgetData(Request $request)
+    {
+
+        return GridQuery::sendData($request, 'GadgetQuery');
+
+    }
+
+    // End Gadget Api Data Grid Method
+
+
+
     // Begin Subcategory Api Data Grid Method
 
     public function subcategoryData(Request $request)

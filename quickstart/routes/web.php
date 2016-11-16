@@ -34,3 +34,13 @@ Route::get('category/{id}-{slug?}', ['as' => 'category.show', 'uses' => 'Categor
 Route::resource('category', 'CategoryController', ['except' => ['show', 'create']]);
 
 // End Category Routes
+
+// Begin Gadget Routes
+Route::get('api/gadget-data', 'ApiController@gadgetData');
+Route::resource('gadget', 'GadgetController');
+// End Gadget Routes
+
+// Begin Subcategory Routes
+Route::get('api/subcategory-data', 'ApiController@subcategoryData');
+Route::resource('subcategory', 'SubcategoryController');
+// End Subcategory Routes

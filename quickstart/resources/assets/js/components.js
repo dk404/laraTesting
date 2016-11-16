@@ -14,3 +14,8 @@ Vue.component('category-grid', require('./components/CategoryGrid.vue'));
 Vue.component('subcategory-grid', require('./components/SubcategoryGrid.vue'));
 
 /** End Subcategory Grid Component Call */
+/** Begin Gadget Grid Component Call */
+
+Vue.component('gadget-grid', require('./components/GadgetGrid.vue'));
+
+/** End Gadget Grid Component Call */
