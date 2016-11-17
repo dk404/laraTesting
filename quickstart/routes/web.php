@@ -18,7 +18,7 @@ Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
 // Api Routes
 
 Route::get('api/marketing-image-data', 'ApiController@marketingImageData');
-
+Route::get('api/user-chart', 'ApiController@userChartData');
 
 // Authentication Routes...
 
@@ -84,3 +84,19 @@ Route::get('/user-dash', 'UserDashController@index');
 // User route
 
 Route::resource('user', 'UserController');
+
+
+// Begin Gadget Routes
+
+Route::get('api/gadget-data', 'ApiController@gadgetData');
+
+Route::resource('gadget', 'GadgetController');
+
+// End Gadget Routes
+// Begin Widget Routes
+
+Route::get('api/widget-data', 'ApiController@widgetData');
+
+Route::resource('widget', 'WidgetController');
+
+// End Widget Routes
